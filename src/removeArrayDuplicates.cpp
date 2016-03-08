@@ -17,26 +17,26 @@ NOTES: Don't create new array, try to change the input array.
 
 int removeArrayDuplicates(int *Arr, int len)
 {
-	
-	int i, j, count = 0, k = 0;
+	int i, j, k = 0, temp = 0;
 	if (len > 0)
 	{
 		if (Arr)
 		{
 			for (i = 0; i < len; i++)
 			{
-				for (j = i - 1; j >= 0; j--)
+				for (j = i + 1; j<len; j++)
 				{
 					if (Arr[i] == Arr[j])
 					{
-						k = 1;
+						temp++;
 					}
 				}
-				if (k != 1)
+				if (temp == 0)
 				{
-					count++;
+					Arr[k] = Arr[i];
+					k++;
 				}
-				k = 0;
+				temp = 0;
 			}
 		}
 		else
@@ -48,5 +48,10 @@ int removeArrayDuplicates(int *Arr, int len)
 	{
 		return -1;
 	}
-	return count;
+	for (i = 0; i <k; i++)
+	{
+		printf("%d", Arr[i]);
+	}
+	printf("length");
+	return k;
 }
