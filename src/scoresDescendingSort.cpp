@@ -14,18 +14,16 @@ NOTES:
 */
 
 #include <stdio.h>
-#include<stdlib.h>
 struct student {
 	char name[10];
 	int score;
 };
 void mergesort(struct student *students, int min, int mid, int max)
 {
-	struct student *temp;
+	struct student temp[30];
 	int i, j, k, m;
 	j = min;
 	m = mid + 1;
-	temp = (struct student *)malloc(sizeof(struct student)*max);
 	for (i = min; j <= mid && m <= max; i++)
 	{
 		if (students[j].score >= students[m].score)
@@ -39,7 +37,7 @@ void mergesort(struct student *students, int min, int mid, int max)
 			m++;
 		}
 	}
-	if (j<mid)
+	if (j>mid)
 	{
 		for (k = m; k <= max; k++)
 		{
@@ -58,7 +56,7 @@ void mergesort(struct student *students, int min, int mid, int max)
 	for (k = min; k <= max; k++)
 		students[k] = temp[k];
 }
-void divide(struct student *students, int min, int max)
+void divide(struct  student *students, int min, int max)
 {
 	int mid;
 	if (min<max)
@@ -69,7 +67,6 @@ void divide(struct student *students, int min, int max)
 		mergesort(students, min, mid, max);
 	}
 }
-
 
 void * scoresDescendingSort(struct student *students, int len) {
 	if (len > 0)
